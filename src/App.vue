@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <!-- <spinner :loading="loading"></spinner> -->
+    <!-- https://eslint.vuejs.org/rules/multi-word-component-names.html -->
+    <SpinnerItem :loading="loading" />
     <tool-bar></tool-bar>
     <transition name="routing-fade" mode="out-in">
       <router-view></router-view>
@@ -11,12 +13,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import ToolBar from './components/ToolBar.vue'
-// import Spinner from "./components/Spinners.vue";
+import SpinnerItem from './components/SpinnerItem.vue'
 import bus from './utils/bus.js'
 export default Vue.extend({
   components: {
     ToolBar,
-    // Spinner,
+    SpinnerItem,
   },
   data() {
     return {
