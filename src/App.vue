@@ -8,12 +8,12 @@
   </div>
 </template>
 
-<script>
-import ToolBar from "./components/ToolBar.vue";
+<script lang="ts">
+import Vue from 'vue'
+import ToolBar from './components/ToolBar.vue'
 // import Spinner from "./components/Spinners.vue";
-import bus from "./utils/bus.js";
-
-export default {
+import bus from './utils/bus.js'
+export default Vue.extend({
   components: {
     ToolBar,
     // Spinner,
@@ -21,22 +21,23 @@ export default {
   data() {
     return {
       loading: false,
-    };
+    }
   },
   methods: {
     onProgress() {
-      this.loading = true;
+      this.loading = true
     },
     offProgress() {
-      this.loading = false;
+      this.loading = false
     },
   },
   created() {
-    bus.$on("on:progress", this.onProgress);
-    bus.$on("off:progress", this.offProgress);
+    bus.$on('on:progress', this.onProgress)
+    bus.$on('off:progress', this.offProgress)
   },
-};
+})
 </script>
+<style scoped></style>
 
 <style>
 body {
