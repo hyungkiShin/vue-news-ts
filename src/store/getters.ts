@@ -1,27 +1,27 @@
 export default {
-  fetchedItem(state) {
+  fetchedItem(state : any) {
     return state.item;
   },
-  fetchedUser(state) {
+  fetchedUser(state : any) {
     return state.user;
   },
-  fetchedList(state) {
+  fetchedList(state : any) {
     return state.list;
   },
   // ItemView
-  userName(state) {
+  userName(state : any) {
     return state.item.user;
   },
-  userContent(state) {
+  userContent(state : any) {
     return state.item.content;
   },
-  userQuestion(state) {
+  userQuestion(state : any) {
     return state.item.title;
   },
-  userTimeAgo(state) {
+  userTimeAgo(state : any) {
     return state.item.time_ago;
   },
-  contentPoints(state) {
+  contentPoints(state: any) {
     return state.item.points;
   },
 };
