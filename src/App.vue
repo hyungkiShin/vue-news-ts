@@ -15,6 +15,7 @@ import Vue from 'vue'
 import ToolBar from './components/ToolBar.vue'
 import SpinnerItem from './components/SpinnerItem.vue'
 import bus from './utils/bus'
+
 export default Vue.extend({
   components: {
     ToolBar,
