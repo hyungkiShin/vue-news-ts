@@ -1,4 +1,5 @@
-import { CommitOptions, Store } from 'vuex'
+import { CommitOptions, DispatchOptions, Store } from 'vuex'
+import { Actions } from './actions';
 import { Mutations } from './mutations'
 import { RootState } from './state'
 
@@ -10,4 +11,13 @@ type MyMutations = {
     ): ReturnType<Mutations[K]>;
 };
 
-export type MyStore = Omit<Store<RootState>, "commit"> & MyMutations
+type MyActions = {
+    dispatch<K extends keyof Actions>(
+      key: K,
+      payload?: Parameters<Actions[K]>[1],
+      options?: DispatchOptions
+    ): ReturnType<Actions[K]>;
+}
+
+export type MyStore = Omit<Store<RootState>, "commit"| "dispatch"> & 
+MyMutations & MyActions;

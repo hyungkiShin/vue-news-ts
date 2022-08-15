@@ -1,4 +1,4 @@
-import store from "../../store";
+import store from "@store/index";
 
 function setRequestOptions(instance) {
   instance.interceptors.request.use(
