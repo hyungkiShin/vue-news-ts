@@ -37,29 +37,30 @@
 </template>
 
 <script lang="ts">
-import { ListItem, NewsItem } from '@/api'
-import Vue, { PropType } from 'vue'
+import { ListItem } from '@/api'
+import Vue from 'vue'
+import { PropType } from 'vue/types/v3-component-props'
 
 export default Vue.extend({
+  
   props: {
     items: {
-      type: Array as PropType<NewsItem[]>,
+      type: Array as PropType<ListItem[]>,
       required: true,
     },
   },
+
   methods: {
-    timeAgo(news: NewsItem): string {
+    timeAgo(news: ListItem): string {
       return news.time_ago.concat('', "2021")
     }
   },
-  computed: {
-    // timeAgo(): string {
-    //   return this.items[0].time_ago.concat()
-    // },
-    listItems(): ListItem[] {
-      return this.$store.getters.fetchedList
-    },
-  },
+
+  // computed: {
+  //   listItems(): ListItem[] {
+  //     return this.$store.getters.fetchedList
+  //   },
+  // },
 })
 </script>
 

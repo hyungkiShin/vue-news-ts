@@ -19,7 +19,8 @@ export default new VueRouter({
       name: "news",
       component: createListView("NewsView"),
       async beforeEnter(routeTo: Route, routeFrom: Route, next: NavigationGuardNext<Vue>) {
-        // bus.$emit("on:progress");
+        bus.$emit("on:progress");
+        next()
         // try {
         // await store.dispatch("FETCH_LIST", routeTo.name)
         // next()
@@ -29,12 +30,12 @@ export default new VueRouter({
         // }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
-        try {
-          await store.dispatch("FETCH_NEWS", routeTo.name)
-          next()
-        } catch (error) {
-          new Error("failed to fetch ask items")
-        }
+        // try {
+        //   await store.dispatch("FETCH_LIST", routeTo.name)
+        //   next()
+        // } catch (error) {
+        //   new Error("failed to fetch ask items")
+        // }
       },
     },
     {
@@ -44,12 +45,13 @@ export default new VueRouter({
       // NavigationGuardNext<Vue>
       async beforeEnter(routeTo: Route, routeFrom: Route, next: NavigationGuardNext<Vue>) {
         bus.$emit("on:progress");
-        try {
-          await store.dispatch("FETCH_ASK", routeTo.name)
-          next()
-        } catch (error) {
-          new Error("failed to fetch ask items")
-        }
+        next()
+        // try {
+        //   await store.dispatch("FETCH_LIST", routeTo.name)
+        //   next()
+        // } catch (error) {
+        //   new Error("failed to fetch ask items")
+        // }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
       },
@@ -60,12 +62,13 @@ export default new VueRouter({
       component: createListView("JobsView"),
       async beforeEnter(routeTo: Route, routeFrom: Route, next: NavigationGuardNext<Vue>) {
         bus.$emit("on:progress");
-        try {
-          await store.dispatch("FETCH_LIST", routeTo.name)
-          next()
-        } catch (error) {
-          new Error("failed to fetch jobs items")
-        }
+        next()
+        // try {
+        //   await store.dispatch("FETCH_LIST", routeTo.name)
+        //   next()
+        // } catch (error) {
+        //   new Error("failed to fetch jobs items")
+        // }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
       },

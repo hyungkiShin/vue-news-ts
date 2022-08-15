@@ -15,7 +15,6 @@ import Vue from 'vue'
 import ToolBar from './components/ToolBar.vue'
 import SpinnerItem from './components/SpinnerItem.vue'
 import bus from './utils/bus'
-import { ActionTypes } from './store/actions'
 
 export default Vue.extend({
   components: {
@@ -39,9 +38,9 @@ export default Vue.extend({
     // this.$store.state.news
     // this.$store.commit(MutationTypes.SET_NEWS)
     // this.$store.getters
-    const response = await this.$store.dispatch(ActionTypes.FETCH_ASK)
+    // const response = await this.$store.dispatch(ActionTypes.FETCH_ASK)
     // const response = await this.$store.dispatch(ActionTypes.FETCH_USER, "afrcnc")
-    console.log("response", response)
+    // console.log("response", response)
     
     bus.$on('on:progress', this.onProgress)
     bus.$on('off:progress', this.offProgress)

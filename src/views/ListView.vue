@@ -1,23 +1,23 @@
 <template>
   <div>
-    <ListItem :items="newsItems"></ListItem>
+    <ListItemView :items="listItems"></ListItemView>
   </div>
 </template>
 ts
 <script lang="ts">
+import { fetchList, ListItem } from '@/api'
 import Vue from 'vue'
-import { fetchNews, NewsItem } from '@/api'
-import ListItem from '../components/ListItem.vue'
+import ListItemView from '../components/ListItem.vue'
 
 export default Vue.extend({
-  
+
   components: {
-    ListItem,
+    ListItemView,
   },
 
   data() {
     return {
-      newsItems: [] as NewsItem[],
+      listItems: [] as ListItem[],
     }
   },
 
@@ -27,11 +27,11 @@ export default Vue.extend({
 
   methods: {
     async fetchNewsItems() {
-      const response = await fetchNews()
-      this.newsItems = response.data
+      const type = this.$route.name
+      const response = await fetchList(type)
+      this.listItems = response.data
     },
   },
+  
 })
 </script>
-
-<style></style>

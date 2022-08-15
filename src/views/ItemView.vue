@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "fetchedItem",
+      "fetchedList",
       "userName",
       "userTimeAgo",
       "userQuestion",
