@@ -1,8 +1,11 @@
 
 enum ActionTypes {
-  FETCH_NEWS = 'FETCH_NEWS'
+  FETCH_LIST = 'FETCH_LIST',
+  FETCH_NEWS = 'FETCH_NEWS',
+  FETCH_ASK = 'FETCH_ASK',
+  FETCH_USER = 'FETCH_USER',
 }
-import { fetchNews } from "@/api"
+import { fetchAsk, fetchNews, fetchUser } from "@/api"
 import { ActionContext } from "vuex";
 import { Mutations, MutationTypes } from "./mutations";
 import { RootState } from "./state";
@@ -15,16 +18,32 @@ type MyActionContext = {
 } & Omit<ActionContext<RootState, RootState>, "commit">;
 
 const actions = {
-  async [ActionTypes.FETCH_NEWS](context: MyActionContext, payload?: any) {
+  async [ActionTypes.FETCH_LIST](context: MyActionContext) {
     const { data } = await fetchNews();
     context.commit(MutationTypes.SET_NEWS, data)
+    return data
+  },
+  async [ActionTypes.FETCH_ASK](context: MyActionContext) {
+    const { data } = await fetchAsk();
+    console.log("ask", data)
+    context.commit(MutationTypes.SET_ASK, data)
+    return data
+  },
+  async [ActionTypes.FETCH_NEWS](context: MyActionContext) {
+    const { data } = await fetchNews();
+    context.commit(MutationTypes.SET_NEWS, data)
+    return data
+  },
+  async [ActionTypes.FETCH_USER](context: MyActionContext, payload: string) {
+    const { data } = await fetchUser(payload);
+    context.commit(MutationTypes.SET_USER, data)
     return data
   }
 }
 
 type Actions = typeof actions;
 
-export { ActionTypes, actions, Actions}
+export { ActionTypes, actions, Actions }
 
 // import {
 //   fetchNews,

@@ -19,16 +19,22 @@ export default new VueRouter({
       name: "news",
       component: createListView("NewsView"),
       async beforeEnter(routeTo: Route, routeFrom: Route, next: NavigationGuardNext<Vue>) {
-        bus.$emit("on:progress");
+        // bus.$emit("on:progress");
         // try {
         // await store.dispatch("FETCH_LIST", routeTo.name)
-        next()
+        // next()
         // } catch (error) {
         // new Error("failed to fetch news items")
         // next('/error') // 실패시 redirect 케이스
         // }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
+        try {
+          await store.dispatch("FETCH_NEWS", routeTo.name)
+          next()
+        } catch (error) {
+          new Error("failed to fetch ask items")
+        }
       },
     },
     {
@@ -39,10 +45,10 @@ export default new VueRouter({
       async beforeEnter(routeTo: Route, routeFrom: Route, next: NavigationGuardNext<Vue>) {
         bus.$emit("on:progress");
         try {
-          await store.dispatch("FETCH_LIST", routeTo.name)
+          await store.dispatch("FETCH_ASK", routeTo.name)
           next()
         } catch (error) {
-          new Error("failed to fetch news items")
+          new Error("failed to fetch ask items")
         }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
@@ -58,7 +64,7 @@ export default new VueRouter({
           await store.dispatch("FETCH_LIST", routeTo.name)
           next()
         } catch (error) {
-          new Error("failed to fetch news items")
+          new Error("failed to fetch jobs items")
         }
         // .then(() => next())
         // .catch(() => new Error("failed to fetch news items"));
@@ -75,7 +81,7 @@ export default new VueRouter({
           next()
 
         } catch (error) {
-          new Error("failed to fetch news items")
+          new Error("failed to fetch item details")
         }
         // .then(() => next())
         // .catch((err) => new Error("failed to fetch item details"));
@@ -92,7 +98,7 @@ export default new VueRouter({
           await store.dispatch("FETCH_USER", itemId)
           next()
         } catch (error) {
-          new Error("failed to fetch news items")
+          new Error("failed to fetch user profile")
         }
         // .then(() => next())
         // .catch((err) => new Error("failed to fetch user profile"));

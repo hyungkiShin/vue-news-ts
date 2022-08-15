@@ -10,6 +10,12 @@ export const getters = {
   // getToken(state: RootState) {
   //   return state.token + "!";
   // }
+  fetchedList(state: RootState) {
+    return state.list;
+  },
+  fetchedUser(state: RootState) {
+    return state.user;
+  },
 };
 
 export type Getters = typeof getters;
@@ -24,7 +30,6 @@ export type Getters = typeof getters;
 //   fetchedList(state : any) {
 //     return state.list;
 //   },
-//   // ItemView
 //   userName(state : any) {
 //     return state.item.user;
 //   },

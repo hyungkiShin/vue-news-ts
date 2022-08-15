@@ -15,7 +15,6 @@ import Vue from 'vue'
 import ToolBar from './components/ToolBar.vue'
 import SpinnerItem from './components/SpinnerItem.vue'
 import bus from './utils/bus'
-import { MutationTypes } from './store/mutations'
 import { ActionTypes } from './store/actions'
 
 export default Vue.extend({
@@ -37,9 +36,13 @@ export default Vue.extend({
     },
   },
   async created() {
-    this.$store.state.news
-    this.$store.commit(MutationTypes.SET_NEWS)
-    const response = await this.$store.dispatch(ActionTypes.FETCH_NEWS)
+    // this.$store.state.news
+    // this.$store.commit(MutationTypes.SET_NEWS)
+    // this.$store.getters
+    const response = await this.$store.dispatch(ActionTypes.FETCH_ASK)
+    // const response = await this.$store.dispatch(ActionTypes.FETCH_USER, "afrcnc")
+    console.log("response", response)
+    
     bus.$on('on:progress', this.onProgress)
     bus.$on('off:progress', this.offProgress)
   },
@@ -74,3 +77,7 @@ a.router-link-active {
   opacity: 0;
 }
 </style>
+
+function fetchedUser() {
+  throw new Error('Function not implemented.')
+}

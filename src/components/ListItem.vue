@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { NewsItem } from '@/api'
+import { ListItem, NewsItem } from '@/api'
 import Vue, { PropType } from 'vue'
 
 export default Vue.extend({
@@ -56,7 +56,7 @@ export default Vue.extend({
     // timeAgo(): string {
     //   return this.items[0].time_ago.concat()
     // },
-    listItems(): any {
+    listItems(): ListItem[] {
       return this.$store.getters.fetchedList
     },
   },
