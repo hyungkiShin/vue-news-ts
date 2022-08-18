@@ -3,7 +3,7 @@
     <ListItemView :items="listItems"></ListItemView>
   </div>
 </template>
-ts
+
 <script lang="ts">
 import { fetchList, ListItem } from '@/api'
 import Vue from 'vue'
@@ -28,10 +28,13 @@ export default Vue.extend({
   methods: {
     async fetchNewsItems() {
       const type = this.$route.name
-      const response = await fetchList(type)
-      this.listItems = response.data
+      if (type) {
+        const { data } = await fetchList(type)
+        this.listItems = data
+      }
+      // this.listItems = []
     },
   },
-  
+
 })
 </script>
